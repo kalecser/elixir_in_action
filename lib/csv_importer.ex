@@ -1,0 +1,31 @@
+defmodule CSVImporter do
+  defstruct date: nil, title: ""
+
+  def import_file(file) do
+    File.stream!(file)
+    |> import_entries
+  end
+
+  def import_entries(lines) do
+    lines
+    |> Stream.map(&import_entry/1)
+  end
+
+  def import_entry(line) do
+    String.split(line, ",") |>
+    create_appointment
+  end
+
+  def create_appointment([date, title]) do
+    date =
+      String.split(date, "/")
+      |> Enum.map(&parse_date_int/1)
+      |> List.to_tuple
+    %TodoAppointment{date: date, title: String.trim(title)}
+  end
+
+  def parse_date_int(str) do
+    Integer.parse(str)
+    |> elem(0)
+  end
+end
