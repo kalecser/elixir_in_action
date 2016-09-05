@@ -6,17 +6,17 @@ defmodule CSVImporter do
     |> import_entries
   end
 
-  def import_entries(lines) do
+  defp import_entries(lines) do
     lines
     |> Stream.map(&import_entry/1)
   end
 
-  def import_entry(line) do
+  defp import_entry(line) do
     String.split(line, ",") |>
     create_appointment
   end
 
-  def create_appointment([date, title]) do
+  defp create_appointment([date, title]) do
     date =
       String.split(date, "/")
       |> Enum.map(&parse_date_int/1)
@@ -24,7 +24,7 @@ defmodule CSVImporter do
     %TodoAppointment{date: date, title: String.trim(title)}
   end
 
-  def parse_date_int(str) do
+  defp parse_date_int(str) do
     Integer.parse(str)
     |> elem(0)
   end
