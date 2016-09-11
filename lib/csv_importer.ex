@@ -1,5 +1,4 @@
 defmodule CSVImporter do
-  defstruct date: nil, title: ""
 
   def import_file(file) do
     File.stream!(file)

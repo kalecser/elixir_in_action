@@ -10,5 +10,5 @@ defmodule CSVImporterTest do
         %TodoAppointment{date: {2013, 12, 20}, title: "Shopping"},
         %TodoAppointment{date: {2013, 12, 19}, title: "Movies"}]
         == todo_entries
-    end
+  end
 end
