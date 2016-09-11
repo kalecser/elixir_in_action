@@ -4,8 +4,8 @@ defmodule TodoListTest do
         appointment = %TodoAppointment{date: {2013, 12, 19}, title: "Dentist"}
 
         subject =
-          TodoList.new |>
-          TodoList.add_appointment(appointment)
+          TodoList.new
+          |> TodoList.add_appointment(appointment)
 
         actual = TodoList.get_appointment(subject, 1)
         assert appointment == actual
